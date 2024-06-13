@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		2D8ECAA82C1B91CC00BB138B /* Centralized_WalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8ECAA72C1B91CC00BB138B /* Centralized_WalletApp.swift */; };
-		2D8ECAAA2C1B91CC00BB138B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8ECAA92C1B91CC00BB138B /* ContentView.swift */; };
 		2D8ECAAC2C1B91CC00BB138B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8ECAAB2C1B91CC00BB138B /* Item.swift */; };
 		2D8ECAAE2C1B91CD00BB138B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D8ECAAD2C1B91CD00BB138B /* Assets.xcassets */; };
 		2D8ECAB12C1B91CD00BB138B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D8ECAB02C1B91CD00BB138B /* Preview Assets.xcassets */; };
 		2D8ECABB2C1B91CD00BB138B /* Centralized_WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8ECABA2C1B91CD00BB138B /* Centralized_WalletTests.swift */; };
 		2D8ECAC52C1B91CD00BB138B /* Centralized_WalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8ECAC42C1B91CD00BB138B /* Centralized_WalletUITests.swift */; };
 		2D8ECAC72C1B91CD00BB138B /* Centralized_WalletUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8ECAC62C1B91CD00BB138B /* Centralized_WalletUITestsLaunchTests.swift */; };
+		2D8ECAD42C1B93C300BB138B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8ECAD32C1B93C300BB138B /* ContentView.swift */; };
+		2D8ECAD62C1B93D600BB138B /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8ECAD52C1B93D600BB138B /* Class.swift */; };
+		2D8ECAD82C1B93E000BB138B /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8ECAD72C1B93E000BB138B /* Functions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,6 @@
 /* Begin PBXFileReference section */
 		2D8ECAA42C1B91CC00BB138B /* Centralized Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Centralized Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D8ECAA72C1B91CC00BB138B /* Centralized_WalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Centralized_WalletApp.swift; sourceTree = "<group>"; };
-		2D8ECAA92C1B91CC00BB138B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2D8ECAAB2C1B91CC00BB138B /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		2D8ECAAD2C1B91CD00BB138B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D8ECAB02C1B91CD00BB138B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -46,6 +47,9 @@
 		2D8ECAC02C1B91CD00BB138B /* Centralized WalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Centralized WalletUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D8ECAC42C1B91CD00BB138B /* Centralized_WalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Centralized_WalletUITests.swift; sourceTree = "<group>"; };
 		2D8ECAC62C1B91CD00BB138B /* Centralized_WalletUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Centralized_WalletUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2D8ECAD32C1B93C300BB138B /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = ../../20240613CoinBase/ContentView.swift; sourceTree = "<group>"; };
+		2D8ECAD52C1B93D600BB138B /* Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Class.swift; path = ../../20240613CoinBase/Class.swift; sourceTree = "<group>"; };
+		2D8ECAD72C1B93E000BB138B /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Functions.swift; path = ../../20240613CoinBase/Functions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +101,10 @@
 			isa = PBXGroup;
 			children = (
 				2D8ECAA72C1B91CC00BB138B /* Centralized_WalletApp.swift */,
-				2D8ECAA92C1B91CC00BB138B /* ContentView.swift */,
+				2D8ECAD32C1B93C300BB138B /* ContentView.swift */,
+				2D8ECAD72C1B93E000BB138B /* Functions.swift */,
 				2D8ECAAB2C1B91CC00BB138B /* Item.swift */,
+				2D8ECAD52C1B93D600BB138B /* Class.swift */,
 				2D8ECAAD2C1B91CD00BB138B /* Assets.xcassets */,
 				2D8ECAAF2C1B91CD00BB138B /* Preview Content */,
 			);
@@ -260,8 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D8ECAAA2C1B91CC00BB138B /* ContentView.swift in Sources */,
+				2D8ECAD62C1B93D600BB138B /* Class.swift in Sources */,
 				2D8ECAAC2C1B91CC00BB138B /* Item.swift in Sources */,
+				2D8ECAD42C1B93C300BB138B /* ContentView.swift in Sources */,
+				2D8ECAD82C1B93E000BB138B /* Functions.swift in Sources */,
 				2D8ECAA82C1B91CC00BB138B /* Centralized_WalletApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
