@@ -11,6 +11,7 @@ import SwiftData
 @Model
 final class Item {
     var timestamp: Date
+    var placeholder = 3
     
     init(timestamp: Date) {
         self.timestamp = timestamp
