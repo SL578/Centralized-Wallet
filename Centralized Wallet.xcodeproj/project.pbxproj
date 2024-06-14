@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D08CAE02C1D09E100E703B5 /* AddressData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08CADF2C1D09E100E703B5 /* AddressData.swift */; };
+		2D08CAE22C1D0A0200E703B5 /* AddressListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08CAE12C1D0A0200E703B5 /* AddressListView.swift */; };
+		2D08CAE52C1D0A9A00E703B5 /* ContentView_new.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08CAE42C1D0A9A00E703B5 /* ContentView_new.swift */; };
 		2D3DD8BE2C1B99D4008D64E6 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3DD8BD2C1B99D4008D64E6 /* Functions.swift */; };
 		2D8ECAA82C1B91CC00BB138B /* Centralized_WalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8ECAA72C1B91CC00BB138B /* Centralized_WalletApp.swift */; };
 		2D8ECAAC2C1B91CC00BB138B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8ECAAB2C1B91CC00BB138B /* Item.swift */; };
@@ -37,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D08CADF2C1D09E100E703B5 /* AddressData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressData.swift; sourceTree = "<group>"; };
+		2D08CAE12C1D0A0200E703B5 /* AddressListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListView.swift; sourceTree = "<group>"; };
+		2D08CAE42C1D0A9A00E703B5 /* ContentView_new.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView_new.swift; sourceTree = "<group>"; };
 		2D3DD8BD2C1B99D4008D64E6 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		2D8ECAA42C1B91CC00BB138B /* Centralized Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Centralized Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D8ECAA72C1B91CC00BB138B /* Centralized_WalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Centralized_WalletApp.swift; sourceTree = "<group>"; };
@@ -81,7 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				2D8ECAA62C1B91CC00BB138B /* Centralized Wallet */,
-				2D8ECAB92C1B91CD00BB138B /* Centralized WalletTests */,
 				2D8ECAC32C1B91CD00BB138B /* Centralized WalletUITests */,
 				2D8ECAA52C1B91CC00BB138B /* Products */,
 			);
@@ -100,13 +105,17 @@
 		2D8ECAA62C1B91CC00BB138B /* Centralized Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				2D08CADF2C1D09E100E703B5 /* AddressData.swift */,
+				2D08CAE42C1D0A9A00E703B5 /* ContentView_new.swift */,
 				2D3DD8BD2C1B99D4008D64E6 /* Functions.swift */,
-				2DD506CD2C1B990400051816 /* ContentView.swift */,
+				2D08CAE12C1D0A0200E703B5 /* AddressListView.swift */,
 				2DD506CA2C1B98B100051816 /* Class.swift */,
 				2D8ECAA72C1B91CC00BB138B /* Centralized_WalletApp.swift */,
 				2D8ECAAB2C1B91CC00BB138B /* Item.swift */,
+				2DD506CD2C1B990400051816 /* ContentView.swift */,
 				2D8ECAAD2C1B91CD00BB138B /* Assets.xcassets */,
 				2D8ECAAF2C1B91CD00BB138B /* Preview Content */,
+				2D8ECAB92C1B91CD00BB138B /* Centralized WalletTests */,
 			);
 			path = "Centralized Wallet";
 			sourceTree = "<group>";
@@ -266,11 +275,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D08CAE02C1D09E100E703B5 /* AddressData.swift in Sources */,
 				2DD506CB2C1B98B100051816 /* Class.swift in Sources */,
 				2DD506CE2C1B990400051816 /* ContentView.swift in Sources */,
+				2D08CAE22C1D0A0200E703B5 /* AddressListView.swift in Sources */,
 				2D8ECAAC2C1B91CC00BB138B /* Item.swift in Sources */,
 				2D3DD8BE2C1B99D4008D64E6 /* Functions.swift in Sources */,
 				2D8ECAA82C1B91CC00BB138B /* Centralized_WalletApp.swift in Sources */,
+				2D08CAE52C1D0A9A00E703B5 /* ContentView_new.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
