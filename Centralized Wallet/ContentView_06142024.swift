@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-struct ContentView_new: View {
+struct ContentView_06152024: View {
     @StateObject private var dataManager = DataManager()
     @State private var showActionSheet = false
     @State private var selectedType: String?
@@ -62,6 +62,6 @@ struct ContentView_new: View {
 
 
 #Preview {
-    ContentView()
+    ContentView_06162024()
 }
 
