@@ -3,7 +3,6 @@
 // 20240604 Address Data
 
 // Created by ddr5ecc.eth on 6/4/24.
-// Imported by Stephen Lin on 6/15/24.
 
 
 import Foundation
@@ -62,4 +61,5 @@ class DataManager: ObservableObject {
         }
     }
 }
+
 

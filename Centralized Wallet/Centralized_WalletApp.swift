@@ -25,7 +25,7 @@ struct Centralized_WalletApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView_06162024()
+            ContentView()
         }
         .modelContainer(sharedModelContainer)
     }

@@ -3,7 +3,6 @@
 // 20240604 Address Data
 
 // Created by ddr5ecc.eth on 6/4/24.
-// Imported by Stephen Lin on 6/14/24.
 
 
 import SwiftUI
@@ -71,4 +70,5 @@ struct AddressListView: View {
         .navigationBarTitle(Text("\(type) Addresses"))
     }
 }
+
 
