@@ -5,7 +5,6 @@
 // Created by ddr5ecc.eth on 6/4/24.
 
 
-
 import SwiftUI
 
 struct ContentView: View {
@@ -15,16 +14,55 @@ struct ContentView: View {
     @State private var bitcoinAddress: String = "1EzwoHtiXB4iFwedPr49iywjZn2nnekhoj"
     @State private var bitcoinBalance: Double?
     @State private var priceBTC: String = "Loading..."
+    @State private var walletValue: Double?
     private var fetcher = BitcoinPriceFetcher()
 
     var body: some View {
         NavigationView {
             VStack {
+                Text("BTC Price: \(priceBTC)")
+                    .padding()
+                Button("Fetch BTC Price") {
+                    fetchBitcoinPrice(fetcher: fetcher) { price in
+                        DispatchQueue.main.async {
+                            self.priceBTC = price ?? "Error fetching price"
+                        }
+                    }
+                }
+                .padding()
+                .onAppear {
+                    fetchBitcoinPrice(fetcher: fetcher) { price in
+                        DispatchQueue.main.async {
+                            self.priceBTC = price ?? "Error fetching price"
+                        }
+                    }
+                }
                 Text("🌍")
                     .font(.system(size: 100))
                     .padding()
+                TextField("Enter Bitcoin Address", text: $bitcoinAddress)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
                 
-                Spacer()
+                Button(action: {
+                    fetchBitcoinBalance(for: bitcoinAddress) { balance in
+                        DispatchQueue.main.async {
+                            self.bitcoinBalance = balance
+                        }
+                    }
+                }) {
+                    Text("Get Balance")
+                }
+                .padding()
+                
+                if let balance = bitcoinBalance {
+                    Text("Balance: \(balance) BTC")
+                        .padding()
+                    Text("Value approx: \((balance * Double(priceBTC)!.rounded(.towardZero)).rounded(.towardZero)) USD")
+                } else {
+                    Text("Balance: N/A")
+                        .padding()
+                }
             }
             .navigationBarTitle("Home", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
@@ -59,45 +97,6 @@ struct ContentView: View {
             }   // 出現一個底部彈出視窗，該彈出視窗的內容來自 AddressListView.
                 // 當 $selectedType 存在值(非nil)的時候，就出現 sheet.
                 //
-            TextField("Enter Bitcoin Address", text: $bitcoinAddress)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            
-            Button(action: {
-                fetchBitcoinBalance(for: bitcoinAddress) { balance in
-                    DispatchQueue.main.async {
-                        self.bitcoinBalance = balance
-                    }
-                }
-            }) {
-                Text("Get Balance")
-            }
-            .padding()
-            
-            if let balance = bitcoinBalance {
-                Text("Balance: \(balance) BTC")
-                    .padding()
-            } else {
-                Text("Balance: N/A")
-                    .padding()
-            }
-        }
-        Text("BTC Price: \(priceBTC)")
-            .padding()
-        Button("Fetch BTC Price") {
-            fetchBitcoinPrice(fetcher: fetcher) { price in
-                DispatchQueue.main.async {
-                    self.priceBTC = price ?? "Error fetching price"
-                }
-            }
-        }
-        .padding()
-        .onAppear {
-            fetchBitcoinPrice(fetcher: fetcher) { price in
-                DispatchQueue.main.async {
-                    self.priceBTC = price ?? "Error fetching price"
-                }
-            }
         }
     }
 }

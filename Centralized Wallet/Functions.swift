@@ -33,16 +33,6 @@ func fetchBitcoinBalance(for address: String, completion: @escaping (Double?) ->
     task.resume()
 }
 
-//
-// Functions.swift
-// 20240529 Coinbase Json
-
-// Created by ddr5ecc.eth on 5/29/24.
-
-
-
-import Foundation
-
 // 将获取比特币价格的函数放在 ContentView 外
 func fetchBitcoinPrice(fetcher: BitcoinPriceFetcher, completion: @escaping (String?) -> Void) {
     fetcher.fetchBTCPrice(completion: completion)

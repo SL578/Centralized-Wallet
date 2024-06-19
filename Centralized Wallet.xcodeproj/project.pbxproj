@@ -103,9 +103,9 @@
 		2D8ECAA62C1B91CC00BB138B /* Centralized Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				2DA2B3202C22518F006E28AD /* ContentView.swift */,
 				2D8ECAA72C1B91CC00BB138B /* Centralized_WalletApp.swift */,
 				2D8ECAAB2C1B91CC00BB138B /* Item.swift */,
-				2DA2B3202C22518F006E28AD /* ContentView.swift */,
 				2DA2B3222C2251C2006E28AD /* AddressesListView.swift */,
 				2DA2B3242C2251DC006E28AD /* AddressesData.swift */,
 				2DA2B3262C225218006E28AD /* Functions.swift */,
