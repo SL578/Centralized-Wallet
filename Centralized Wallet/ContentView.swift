@@ -58,7 +58,10 @@ struct ContentView: View {
                 if let balance = bitcoinBalance {
                     Text("Balance: \(balance) BTC")
                         .padding()
-                    Text("Value approx: \(Int(balance * Double(priceBTC)!))")
+                    Text("Value approx: \(String(format: "%.2f", balance * Double(priceBTC)!)) USD")
+
+                    /*
+                    Text("Value approx: \(Int(balance * Double(priceBTC)!))") */
                     /*Text("Value approx: \((balance * Double(priceBTC)!.rounded(.towardZero)).rounded(.towardZero)) USD")
                      */
                 } else {
