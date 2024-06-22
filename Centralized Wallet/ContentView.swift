@@ -19,7 +19,7 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
+                VStack(alignment: .leading, spacing: 3) {
                 Text("BTC Price: \(priceBTC)")
                     .padding()
                 Button("Fetch BTC Price") {
@@ -37,13 +37,12 @@ struct ContentView: View {
                         }
                     }
                 }
-                Text("🌍")
-                    .font(.system(size: 100))
-                    .padding()
+                Divider()
+                Text("Bitcoin address:")
                 TextField("Enter Bitcoin Address", text: $bitcoinAddress)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-                
+                    
                 Button(action: {
                     fetchBitcoinBalance(for: bitcoinAddress) { balance in
                         DispatchQueue.main.async {
@@ -54,16 +53,14 @@ struct ContentView: View {
                     Text("Get Balance")
                 }
                 .padding()
-                
+                    
                 if let balance = bitcoinBalance {
-                    Text("Balance: \(balance) BTC")
+                    Text("Balance: \(balance) BTC\n" +
+                    "Value approx: \(String(format: "%.2f", balance * Double(priceBTC)!)) USD")
                         .padding()
-                    Text("Value approx: \(String(format: "%.2f", balance * Double(priceBTC)!)) USD")
-
-                    /*
-                    Text("Value approx: \(Int(balance * Double(priceBTC)!))") */
-                    /*Text("Value approx: \((balance * Double(priceBTC)!.rounded(.towardZero)).rounded(.towardZero)) USD")
-                     */
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(.black, lineWidth: 2))
                 } else {
                     Text("Balance: N/A")
                         .padding()
@@ -98,10 +95,10 @@ struct ContentView: View {
                 // 將這個 type 的值交給 AddressListView(), 這個函數需要兩個參數
                 // 一個是要顯示 BTC 還是 ETH
                 // 另一個是指定資料庫的位置
-
-            }   // 出現一個底部彈出視窗，該彈出視窗的內容來自 AddressListView.
+                // 出現一個底部彈出視窗，該彈出視窗的內容來自 AddressListView.
                 // 當 $selectedType 存在值(非nil)的時候，就出現 sheet.
-                //
+
+            }
         }
     }
 }
