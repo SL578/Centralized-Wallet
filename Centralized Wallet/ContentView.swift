@@ -18,86 +18,89 @@ struct ContentView: View {
     private var fetcher = BitcoinPriceFetcher()
 
     var body: some View {
-        NavigationView {
+            NavigationView {
                 VStack(alignment: .leading, spacing: 3) {
-                Text("BTC Price: \(priceBTC)")
+                    Text("BTC Price: \(priceBTC)")
+                        .padding()
+                    Button("Fetch BTC Price") {
+                        fetchBitcoinPrice(fetcher: fetcher) { price in
+                            DispatchQueue.main.async {
+                                self.priceBTC = price ?? "Error fetching price"
+                            }
+                        }
+                    }
                     .padding()
-                Button("Fetch BTC Price") {
-                    fetchBitcoinPrice(fetcher: fetcher) { price in
-                        DispatchQueue.main.async {
-                            self.priceBTC = price ?? "Error fetching price"
+                    .onAppear {
+                        fetchBitcoinPrice(fetcher: fetcher) { price in
+                            DispatchQueue.main.async {
+                                self.priceBTC = price ?? "Error fetching price"
+                            }
                         }
                     }
-                }
-                .padding()
-                .onAppear {
-                    fetchBitcoinPrice(fetcher: fetcher) { price in
-                        DispatchQueue.main.async {
-                            self.priceBTC = price ?? "Error fetching price"
+                    
+                    Divider()
+                    
+                    Text("Bitcoin address:")
+                        .padding()
+                    TextField("Enter Bitcoin Address", text: $bitcoinAddress)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                    
+                    Button(action: {
+                        fetchBitcoinBalance(for: bitcoinAddress) { balance in
+                            DispatchQueue.main.async {
+                                self.bitcoinBalance = balance
+                            }
                         }
+                    }) {
+                        Text("Get Balance")
                     }
-                }
-                Divider()
-                Text("Bitcoin address:")
-                TextField("Enter Bitcoin Address", text: $bitcoinAddress)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                     
-                Button(action: {
-                    fetchBitcoinBalance(for: bitcoinAddress) { balance in
-                        DispatchQueue.main.async {
-                            self.bitcoinBalance = balance
-                        }
+                    if let balance = bitcoinBalance {
+                        Text("Balance: \(balance) BTC\n" +
+                             "Value approx: \(String(format: "%.2f", balance * Double(priceBTC)!)) USD")
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(.black, lineWidth: 2))
+                    } else {
+                        Text("Balance: N/A")
+                            .padding()
                     }
+                    Spacer()
+                }
+                .navigationBarTitle("Home", displayMode: .inline)
+                .navigationBarItems(trailing: Button(action: {
+                    showActionSheet = true
                 }) {
-                    Text("Get Balance")
+                    Image(systemName: "ellipsis")
+                        .imageScale(.large)
+                })
+                .actionSheet(isPresented: $showActionSheet) {
+                    ActionSheet(
+                        title: Text("Select Cryptocurrency"),
+                        buttons: [
+                            .default(Text("BTC")) {
+                                selectedType = "BTC"
+                            },
+                            .default(Text("ETH")) {
+                                selectedType = "ETH"
+                            },
+                            .cancel()
+                        ]
+                    )
                 }
-                .padding()
-                    
-                if let balance = bitcoinBalance {
-                    Text("Balance: \(balance) BTC\n" +
-                    "Value approx: \(String(format: "%.2f", balance * Double(priceBTC)!)) USD")
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(.black, lineWidth: 2))
-                } else {
-                    Text("Balance: N/A")
-                        .padding()
-                }
-            }
-            .navigationBarTitle("Home", displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {
-                showActionSheet = true
-            }) {
-                Image(systemName: "ellipsis")
-                    .imageScale(.large)
-            })
-            .actionSheet(isPresented: $showActionSheet) {
-                ActionSheet(
-                    title: Text("Select Cryptocurrency"),
-                    buttons: [
-                        .default(Text("BTC")) {
-                            selectedType = "BTC"
-                        },
-                        .default(Text("ETH")) {
-                            selectedType = "ETH"
-                        },
-                        .cancel()
-                    ]
-                )
-            }
-            .sheet(item: $selectedType) { type in
-                AddressListView(type: type, dataManager: dataManager)
-                // 這段是一個 closure, 接收參數 type, 也就是 $selectedType 的值
-                // 注意此處有 $, 即 binding, 會監控這個值的變化
-                // 當值產生變化時，.sheet 會自動將這個 item 傳給後面的 closure, 剛好 type 就是接收的參數名稱
-                // 將這個 type 的值交給 AddressListView(), 這個函數需要兩個參數
-                // 一個是要顯示 BTC 還是 ETH
-                // 另一個是指定資料庫的位置
-                // 出現一個底部彈出視窗，該彈出視窗的內容來自 AddressListView.
-                // 當 $selectedType 存在值(非nil)的時候，就出現 sheet.
-
+                .sheet(item: $selectedType) { type in
+                    AddressListView(type: type, dataManager: dataManager)
+                    // 這段是一個 closure, 接收參數 type, 也就是 $selectedType 的值
+                    // 注意此處有 $, 即 binding, 會監控這個值的變化
+                    // 當值產生變化時，.sheet 會自動將這個 item 傳給後面的 closure, 剛好 type 就是接收的參數名稱
+                    // 將這個 type 的值交給 AddressListView(), 這個函數需要兩個參數
+                    // 一個是要顯示 BTC 還是 ETH
+                    // 另一個是指定資料庫的位置
+                    // 出現一個底部彈出視窗，該彈出視窗的內容來自 AddressListView.
+                    // 當 $selectedType 存在值(非nil)的時候，就出現 sheet.
             }
         }
     }
