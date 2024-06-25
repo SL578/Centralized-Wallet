@@ -30,6 +30,9 @@ struct ContentView: View {
                         }
                     }
                     .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(.black, lineWidth: 2))
                     .onAppear {
                         fetchBitcoinPrice(fetcher: fetcher) { price in
                             DispatchQueue.main.async {
