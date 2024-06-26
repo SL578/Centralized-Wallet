@@ -11,8 +11,10 @@ struct ContentView: View {
     @StateObject private var dataManager = DataManager()
     @State private var showActionSheet = false
     @State private var selectedType: String?
-    @State private var bitcoinAddress: String = "1EzwoHtiXB4iFwedPr49iywjZn2nnekhoj"
-    @State private var bitcoinBalance: Double?
+    @State private var bitcoinAddress1: String = "1EzwoHtiXB4iFwedPr49iywjZn2nnekhoj"
+    @State private var bitcoinAddress2: String = "1FfmbHfnpaZjKFvyi1okTjJJusN455paPH"
+    @State private var bitcoinBalance1: Double?
+    @State private var bitcoinBalance2: Double?
     @State private var priceBTC: String = "Loading..."
     @State private var walletValue: Double?
     private var fetcher = BitcoinPriceFetcher()
@@ -43,29 +45,47 @@ struct ContentView: View {
                     
                     Divider()
                     
-                    Text("Bitcoin address:")
+                    Text("Bitcoin addresses:")
                         .padding()
-                    TextField("Enter Bitcoin Address", text: $bitcoinAddress)
+                    TextField("Enter Bitcoin Address", text: $bitcoinAddress1)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
-                    TextField("Enter Bitcoin Address", text: $bitcoinAddress)
+                    TextField("Enter Bitcoin Address", text: $bitcoinAddress2)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
                     
                     Button(action: {
-                        fetchBitcoinBalance(for: bitcoinAddress) { balance in
+                        fetchBitcoinBalance(for: bitcoinAddress1) { balance in
                             DispatchQueue.main.async {
-                                self.bitcoinBalance = balance
+                                self.bitcoinBalance1 = balance
+                            }
+                        }
+                        fetchBitcoinBalance(for: bitcoinAddress2) { balance in
+                            DispatchQueue.main.async {
+                                self.bitcoinBalance2 = balance
                             }
                         }
                     }) {
                         Text("Get Balance")
                     }
                     .padding()
-                    
-                    if let balance = bitcoinBalance {
-                        Text("Balance: \(balance) BTC\n" +
-                             "Value approx: \(String(format: "%.2f", balance * Double(priceBTC)!)) USD")
+                    /*
+                    if let balance1 = bitcoinBalance1{
+                        if let balance2 = bitcoinBalance2{
+                            Text("Balance for wallet 1: \(balance1) BTC\nBalance for wallet 2: \(balance2) BTC\n" +
+                                 "Value approx: \(String(format: "%.2f", (balance1 + balance2) * Double(priceBTC)!)) USD")
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(.black, lineWidth: 2))
+                        } else {
+                            Text("Balance: N/A")
+                                .padding()
+                        }
+                    }*/
+                    if let balance1 = bitcoinBalance1, let balance2 = bitcoinBalance2, let price = Double(priceBTC) {
+                        Text("Balance for wallet 1: \(balance1) BTC\nBalance for wallet 2: \(balance2) BTC\n" +
+                             "Value combined approx: \(String(format: "%.2f", (balance1 + balance2) * price)) USD")
                             .padding()
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
@@ -74,6 +94,7 @@ struct ContentView: View {
                         Text("Balance: N/A")
                             .padding()
                     }
+
                     Spacer()
                 }
                 .navigationBarTitle("Home", displayMode: .inline)
