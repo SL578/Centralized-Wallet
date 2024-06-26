@@ -48,6 +48,9 @@ struct ContentView: View {
                     TextField("Enter Bitcoin Address", text: $bitcoinAddress)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
+                    TextField("Enter Bitcoin Address", text: $bitcoinAddress)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
                     
                     Button(action: {
                         fetchBitcoinBalance(for: bitcoinAddress) { balance in
