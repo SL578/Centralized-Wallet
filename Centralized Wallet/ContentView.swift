@@ -96,6 +96,7 @@ struct ContentView: View {
                     }
 
                     Spacer()
+                    Spacer()
                 }
                 .navigationBarTitle("Home", displayMode: .inline)
                 .navigationBarItems(trailing: Button(action: {
