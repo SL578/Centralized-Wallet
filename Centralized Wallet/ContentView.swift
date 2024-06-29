@@ -94,8 +94,6 @@ struct ContentView: View {
                         Text("Balance: N/A")
                             .padding()
                     }
-
-                    Spacer()
                     Spacer()
                 }
                 .navigationBarTitle("Home", displayMode: .inline)
