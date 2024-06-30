@@ -70,19 +70,19 @@ struct ContentView: View {
                     }
                     .padding()
                     /*
-                    if let balance1 = bitcoinBalance1{
-                        if let balance2 = bitcoinBalance2{
-                            Text("Balance for wallet 1: \(balance1) BTC\nBalance for wallet 2: \(balance2) BTC\n" +
-                                 "Value approx: \(String(format: "%.2f", (balance1 + balance2) * Double(priceBTC)!)) USD")
-                            .padding()
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .stroke(.black, lineWidth: 2))
-                        } else {
-                            Text("Balance: N/A")
-                                .padding()
+                     Pseudo code
+                     for (amount of addresses in list){
+                        if (data is valid){
+                            print balance
+                            add value to total
                         }
-                    }*/
+                        else{
+                            next address
+                        }
+                     }
+                     print total value
+                     
+                     */
                     if let balance1 = bitcoinBalance1, let balance2 = bitcoinBalance2, let price = Double(priceBTC) {
                         Text("Balance for wallet 1: \(balance1) BTC\nBalance for wallet 2: \(balance2) BTC\n" +
                              "Value combined approx: \(String(format: "%.2f", (balance1 + balance2) * price)) USD")
