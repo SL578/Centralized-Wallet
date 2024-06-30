@@ -71,6 +71,8 @@ struct ContentView: View {
                     .padding()
                     /*
                      Pseudo code
+                     import AddressesData addresses
+                     
                      for (amount of addresses in list){
                         if (data is valid){
                             print balance
