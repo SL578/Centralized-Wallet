@@ -72,6 +72,7 @@ struct ContentView: View {
                     /*
                      Pseudo code
                      import AddressesData addresses
+                     (need to be able to access user inputted addresses somehow. May not be "import")
                      
                      for (amount of addresses in list){
                         if (data is valid){
