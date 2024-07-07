@@ -71,11 +71,8 @@ struct ContentView: View {
                     .padding()
                     /*
                      Pseudo code
-                     import AddressesData addresses
-                     draw information fron json info file
-                     (need to be able to access user inputted addresses somehow. May not be "import")
                      
-                     for (amount of addresses in list){
+                     for (amount of addresses in addresses.AddressesData){
                         if (data is valid){
                             print balance
                             add value to total
