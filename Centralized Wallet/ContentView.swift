@@ -70,18 +70,18 @@ struct ContentView: View {
                     }
                     .padding()
                     /*
-                     Pseudo code
-                     
-                     for (amount of addresses in addresses.AddressesData){
-                        if (data is valid){
-                            print balance
-                            add value to total
+                     *Pseudo code*
+                     totalValue = 0
+                     ForEach(addresses.AddressData){ Address in
+                        if let balance = Address.balance, let price = Double(priceBTC) {
+                            Text("Balance for address \(Address.address): \n")
+                            totalValue += balance * priceBTC
                         }
                         else{
-                            next address
+                            continue()
                         }
                      }
-                     print total value
+                     Text("Total value combined: (totalValue))
                      
                      */
                     if let balance1 = bitcoinBalance1, let balance2 = bitcoinBalance2, let price = Double(priceBTC) {
