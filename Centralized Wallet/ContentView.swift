@@ -74,7 +74,7 @@ struct ContentView: View {
                      totalValue = 0
                      ForEach(addresses.AddressData){ Address in
                         if let balance = Address.balance, let price = Double(priceBTC) {
-                            Text("Balance for address \(Address.address): \n")
+                            Text("Balance for address  \(Address.address): \n")
                             totalValue += balance * priceBTC
                         }
                         else{
