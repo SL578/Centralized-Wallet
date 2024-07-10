@@ -6,7 +6,8 @@
 
 
 import Foundation
-
+import SwiftUI
+internal var fetcher = BitcoinPriceFetcher()
 struct Address: Identifiable, Codable {
     let id = UUID()
     var type: String
@@ -19,12 +20,13 @@ extension String: Identifiable {
 }
 
 
-class DataManager: ObservableObject {
+class AddressesData: ObservableObject {
     // ObservableObject 類別會被 View 觀察是否有變動
     
     @Published var addresses: [Address] = []
         // @ 代表 View 會依數值變化而更新
         // 陣列名稱 adresses, 內部的元素裝入 Address
+    let CV = ContentView()
     
     init() {
         loadAddresses() // 一開始就載入已儲存的陣列
@@ -60,6 +62,61 @@ class DataManager: ObservableObject {
             }
         }
     }
+    
+    func combinedValue() -> Double {
+        var totalValue = 0.0
+        
+        // Iterate with indices to modify elements in the array
+        for i in addresses.indices {
+            var address = addresses[i]
+            
+            // Synchronous fetch (assuming this is a synchronous call)
+            fetchBitcoinBalance(for: address.address) { balance in
+                DispatchQueue.main.sync {
+                    address.balance = balance
+                }
+            }
+            
+            // Asynchronous fetch
+            fetchBitcoinBalance(for: address.address) { balance in
+                DispatchQueue.main.async {
+                    // Update the address in the original array
+                    self.addresses[i].balance = balance
+                    
+                    // Recalculate totalValue after updating balance
+                    if let balance = addresses[i].balance, let price = Double(CV.priceBTC) {
+                        totalValue += balance * price
+                    }
+                }
+            }
+            
+            // Calculate totalValue with the synchronous fetch
+            if let balance = address.balance, let price = Double(CV.priceBTC) {
+                totalValue += balance * price
+            }
+        }
+        
+        return totalValue
+    }
+
+    /*
+    func combinedValue() -> Double {
+        var totalValue = 0.0
+        for address in addresses {
+            address.balance = CV.fetchBitcoinBalance(address.address)
+            fetchBitcoinBalance(for: address.address) { balance in
+                DispatchQueue.main.async {
+                    address.address = balance
+                }
+            }
+            if let balance = address.balance, let price = Double(CV.priceBTC) {
+                totalValue += balance * Double(CV.priceBTC)!
+            }
+            totalValue += address.balance * Double(CV.priceBTC)!
+        }
+        return totalValue
+    }*/
+
 }
 
 

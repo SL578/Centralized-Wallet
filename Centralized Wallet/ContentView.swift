@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var dataManager = DataManager()
-    @State private var showActionSheet = false
-    @State private var selectedType: String?
-    @State private var bitcoinAddress1: String = "1EzwoHtiXB4iFwedPr49iywjZn2nnekhoj"
-    @State private var bitcoinAddress2: String = "1FfmbHfnpaZjKFvyi1okTjJJusN455paPH"
-    @State private var bitcoinBalance1: Double?
-    @State private var bitcoinBalance2: Double?
-    @State private var priceBTC: String = "Loading..."
-    @State private var walletValue: Double?
-    private var fetcher = BitcoinPriceFetcher()
-
+    @StateObject internal var AD = AddressesData()
+    @State internal var showActionSheet = false
+    @State internal var selectedType: String?
+    @State internal var bitcoinAddress1: String = "1EzwoHtiXB4iFwedPr49iywjZn2nnekhoj"
+    @State internal var bitcoinAddress2: String = "1FfmbHfnpaZjKFvyi1okTjJJusN455paPH"
+    @State internal var bitcoinBalance1: Double?
+    @State internal var bitcoinBalance2: Double?
+    @State internal var priceBTC: String = "Loading..."
+    @State internal var walletValue: Double?
+    internal var fetcher = BitcoinPriceFetcher()
+    
     var body: some View {
             NavigationView {
                 VStack(alignment: .leading, spacing: 3) {
@@ -69,10 +69,9 @@ struct ContentView: View {
                         Text("Get Balance")
                     }
                     .padding()
-                    /*
-                     *Pseudo code*
-                     totalValue = 0
-                     ForEach(addresses.AddressData){ Address in
+/*
+                    var totalValue = 0
+                    ForEach(getAddressesLength()){ Address in
                         if let balance = Address.balance, let price = Double(priceBTC) {
                             Text("Balance for address  \(Address.address): \n")
                             totalValue += balance * priceBTC
@@ -83,7 +82,6 @@ struct ContentView: View {
                      }
                      Text("Total value combined: (totalValue))
                      
-                     */
                     if let balance1 = bitcoinBalance1, let balance2 = bitcoinBalance2, let price = Double(priceBTC) {
                         Text("Balance for wallet 1: \(balance1) BTC\nBalance for wallet 2: \(balance2) BTC\n" +
                              "Value combined approx: \(String(format: "%.2f", (balance1 + balance2) * price)) USD")
@@ -95,6 +93,10 @@ struct ContentView: View {
                         Text("Balance: N/A")
                             .padding()
                     }
+                    */
+                    
+                    //Text(String(AD.combinedValue()))
+                    
                     Spacer()
                 }
                 .navigationBarTitle("Home", displayMode: .inline)
@@ -119,7 +121,7 @@ struct ContentView: View {
                     )
                 }
                 .sheet(item: $selectedType) { type in
-                    AddressListView(type: type, dataManager: dataManager)
+                    AddressListView(type: type, AddressesData: AD)
                     // 這段是一個 closure, 接收參數 type, 也就是 $selectedType 的值
                     // 注意此處有 $, 即 binding, 會監控這個值的變化
                     // 當值產生變化時，.sheet 會自動將這個 item 傳給後面的 closure, 剛好 type 就是接收的參數名稱
@@ -137,98 +139,3 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-/*
-//
-// ContentView.swift
-// 20240603 GetBTCBalance
-
-// Created by ddr5ecc.eth on 6/3/24.
-
-
-
-import SwiftUI
-
-
-
-
-struct ContentView: View {
-    @State private var bitcoinAddress: String = "1EzwoHtiXB4iFwedPr49iywjZn2nnekhoj"
-    @State private var bitcoinBalance: Double?
-    
-    var body: some View {
-        VStack {
-            TextField("Enter Bitcoin Address", text: $bitcoinAddress)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            
-            Button(action: {
-                fetchBitcoinBalance(for: bitcoinAddress) { balance in
-                    DispatchQueue.main.async {
-                        self.bitcoinBalance = balance
-                    }
-                }
-            }) {
-                Text("Get Balance")
-            }
-            .padding()
-            
-            if let balance = bitcoinBalance {
-                Text("Balance: \(balance) BTC")
-                    .padding()
-            } else {
-                Text("Balance: N/A")
-                    .padding()
-            }
-        }
-        .padding()
-    }
-}
-
-#Preview {
-    ContentView()
-}
-
-
-// ContentView.swift
-// 20240529 Coinbase Json
-
-// Created by ddr5ecc.eth on 5/29/24.
-
-
-
-import SwiftUI
-
-// 定义 ContentView 结构体来显示数据
-struct ContentView: View {
-    @State private var priceBTC: String = "Loading..."
-    private var fetcher = BitcoinPriceFetcher()
-
-    var body: some View {
-        VStack {
-            Text("BTC Price: \(priceBTC)")
-                .padding()
-            Button("Fetch BTC Price") {
-                fetchBitcoinPrice(fetcher: fetcher) { price in
-                    DispatchQueue.main.async {
-                        self.priceBTC = price ?? "Error fetching price"
-                    }
-                }
-            }
-            .padding()
-        }
-        .onAppear {
-            fetchBitcoinPrice(fetcher: fetcher) { price in
-                DispatchQueue.main.async {
-                    self.priceBTC = price ?? "Error fetching price"
-                }
-            }
-        }
-    }
-}
-
-
-
-#Preview {
-    ContentView()
-}
-*/
